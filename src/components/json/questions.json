@@ -1,0 +1,82 @@
+[
+  {
+    "question": "Що таке HTML?",
+    "options": [
+      "HyperText Markup Language",
+      "High Technical Markup Language",
+      "Home Tool Markup Language",
+      "Hyperlinking Text Markup Language"
+    ],
+    "answer": "HyperText Markup Language"
+  },
+  {
+    "question": "Яка компанія розробила мову програмування JavaScript?",
+    "options": ["Microsoft", "Google", "Netscape", "Oracle"],
+    "answer": "Netscape"
+  },
+  {
+    "question": "Яка найбільш популярна соціальна мережа у світі?",
+    "options": ["Facebook", "Twitter", "Instagram", "LinkedIn"],
+    "answer": "Facebook"
+  },
+  {
+    "question": "Який рік вважається роком створення першого персонального комп'ютера?",
+    "options": ["1975", "1981", "1985", "1990"],
+    "answer": "1981"
+  },
+  {
+    "question": "Що означає абревіатура CSS?",
+    "options": [
+      "Cascading Style Sheets",
+      "Computer Style Sheets",
+      "Creative Style Sheets",
+      "Colorful Style Sheets"
+    ],
+    "answer": "Cascading Style Sheets"
+  },
+  {
+    "question": "Яка найпоширеніша мова програмування у світі?",
+    "options": ["Java", "Python", "C++", "JavaScript"],
+    "answer": "JavaScript"
+  },
+  {
+    "question": "Яка країна має найбільшу кількість населення?",
+    "options": ["Індія", "Китай", "Сполучені Штати Америки", "Росія"],
+    "answer": "Китай"
+  },
+  {
+    "question": "Хто написав роман 'Гаррі Поттер'?",
+    "options": ["J.R.R. Толкін", "J.K. Роулінг", "Джордж Оруелл", "Ден Браун"],
+    "answer": "J.K. Роулінг"
+  },
+  {
+    "question": "Яка назва знаменитої серії фільмів про пригоди Індіани Джонса?",
+    "options": [
+      "Індіана Джонс та Останній Хрестовий похід",
+      "Індіана Джонс та Храм Загубленого Ковчега",
+      "Індіана Джонс та Кришталевий Череп",
+      "Індіана Джонс та Королівство Кришталевого Черепа"
+    ],
+    "answer": "Індіана Джонс та Храм Загубленого Ковчега"
+  },
+  {
+    "question": "Як називається найбільша планета у Сонячній системі?",
+    "options": ["Марс", "Венера", "Юпітер", "Сатурн"],
+    "answer": "Юпітер"
+  },
+  {
+    "question": "Хто написав п'єсу 'Ромео і Джульєтта'?",
+    "options": [
+      "Вільям Шекспір",
+      "Франц Кафка",
+      "Шарль Діккенс",
+      "Оскар Вайльд"
+    ],
+    "answer": "Вільям Шекспір"
+  },
+  {
+    "question": "Яка назва першого штучного супутника Землі?",
+    "options": ["Юрій Гагарін", "Хаббл", "Лаїка", "Супутник-1"],
+    "answer": "Супутник-1"
+  }
+]
