@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import data from '../json/questions.json';
-import Lader from '../lader';
-import { withRouter } from 'react-router-dom';
-
+import React, { Component } from "react";
+import data from "../json/questions.json";
+import Lader from "../lader";
+import { withRouter } from "react-router-dom";
+import FinalPage from "../../page/finalPage";
 export class Answers extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +13,8 @@ export class Answers extends Component {
       renderAnswer: [],
       count: 0,
       answer: [],
-      renderQuestion: '',
+      renderQuestion: "",
+      gameOver: false,
     };
   }
 
@@ -33,16 +34,16 @@ export class Answers extends Component {
 
   next = () => {
     const { count, options, correctAnswer, question } = this.state;
-    this.setState({
-      count: count + 1,
-      renderAnswer: options[count + 1],
-      answer: correctAnswer[count + 1],
-      renderQuestion: question[count + 1],
-    });
-  };
-
-  finalPage = () => {
-    this.props.history.push('/finalPage');
+    if (count + 1 < options.length) {
+      this.setState({
+        count: count + 1,
+        renderAnswer: options[count + 1],
+        answer: correctAnswer[count + 1],
+        renderQuestion: question[count + 1],
+      });
+    } else {
+      this.setState({ gameOver: true });
+    }
   };
 
   checkAnswer = (e) => {
@@ -52,27 +53,29 @@ export class Answers extends Component {
     if (pressedAnswer === answer) {
       this.next();
     } else {
-      this.finalPage();
-      window.history.pushState(null, null, window.location.href);
-      window.onpopstate = function () {
-        window.history.go(1);
-      };
+      this.setState({ gameOver: true });
+      
     }
   };
 
   render() {
-    const { renderAnswer, renderQuestion, count } = this.state;
+    const { renderAnswer, renderQuestion, count, gameOver } = this.state;
     const answerButtons = renderAnswer.map((answer, index) => (
       <button onClick={this.checkAnswer} key={index}>
         {answer}
       </button>
     ));
-
+    if (gameOver) {
+      
+      return  <FinalPage score={count} />
+      
+    }
+    
     return (
       <div>
         <div>{renderQuestion}</div>
         <div>{answerButtons}</div>
-        <Lader count={count} />
+        <Lader step={count} />
         <button onClick={this.next}>Next</button>
       </div>
     );
