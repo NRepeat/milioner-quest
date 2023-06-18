@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link, BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import MainPage from './page/mainPage';
 import Game from './page/gamePage';
+import FinalPage from './page/finalPage';
 
 
 
@@ -14,6 +15,9 @@ export default class App extends Component {
         </Route>
         <Route path="/game">
           <Game />
+        </Route>
+        <Route path="/finalPage">
+          < FinalPage/>
         </Route>
       </BrowserRouter>
     );
