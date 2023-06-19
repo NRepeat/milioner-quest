@@ -1,6 +1,52 @@
 .default {
-  width: 200px;
-  border: 1px solid cadetblue;  
-  
+  box-sizing: border-box;
+
+  width: 80%;
+  height: 50px;
+
+  background: #ffffff;
+
+  border: 1px solid #d0d0d8;
+  position: relative;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  padding-top: 15px;
+  text-align: center;
+  transition: all 100ms;
 }
-.stage{background-color: azure;}
+.default::after {
+  content: "";
+  position: absolute;
+  right: -100px;
+  top: 25px;
+  background-color: #d0d0d8;
+  width: 100px;
+  height: 2px;
+}
+
+.default::before {
+  content: "";
+  position: absolute;
+  left: -100px;
+  top: 25px;
+  background-color: #d0d0d8;
+  width: 100px;
+  height: 2px;
+  z-index: -1;
+}
+.stage {
+  background-color: azure;
+}
+.staged {
+  background-color: #D0D0D8;
+}
+.lader {
+  display: flex;
+  flex-direction: column-reverse;
+
+  justify-content: space-around;
+  align-items: center;
+  width: 700px;
+}
