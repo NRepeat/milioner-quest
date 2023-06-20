@@ -13,6 +13,7 @@
   font-weight: 400;
   font-size: 20px;
   padding-top: 15px;
+  padding-bottom: 15px;
   text-align: center;
   transition: all 100ms;
 }
@@ -37,10 +38,32 @@
   z-index: -1;
 }
 .stage {
-  background-color: azure;
+  background-color: #FF8B37;
+  color: white;
+}
+.stage::after {
+  content: "";
+  position: absolute;
+  right: -100px;
+  top: 25px;
+  background-color: #FF8B37;
+  width: 100px;
+  height: 2px;
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  left: -100px;
+  top: 25px;
+  background-color: #FF8B37;
+  width: 100px;
+  height: 2px;
+  z-index: -1;
 }
 .staged {
   background-color: #D0D0D8;
+  color: #a4a4ac;
 }
 .lader {
   display: flex;

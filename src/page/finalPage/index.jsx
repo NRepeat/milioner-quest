@@ -1,9 +1,20 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
+import svgimg from "./Group 265.svg"
+import style from "./style.module.scss"
 const winningsData = [
-  '$100', '$500', '$1000', '$2000', '$5000', '$10000', '$20000', '$50000', 
-  '$75000', '$100000', '$500000', '$1000000'
+  "$100",
+  "$500",
+  "$1,000",
+  "$2,000",
+  "$5,000",
+  "$10,000",
+  "$20,000",
+  "$50,000",
+  "$75,000",
+  "$100,000",
+  "$500,000",
+  "$1,000,000",
 ];
 
 const FinalPage = ({ score }) => {
@@ -14,12 +25,18 @@ const FinalPage = ({ score }) => {
   };
 
   return (
-    <>
+    <div className={style.finalPageWrapper}>
+      <div className={style.diagonal}></div>
+      {" "}
+      <img className={style.boxImg}  src={svgimg} alt="Like"></img>
+      <h1 className={style.box3} >Total score:</h1>
       {score > 0 && score < winningsData.length ? (
-        <p>You win {winningsData[score-1]}</p>
-      ) : <p>You loser</p>}
-      <button onClick={startGame}>Back to start</button>
-    </>
+        <p className={style.box1} >{winningsData[score - 1]} earned </p>
+      ) : (
+        <p className={style.box1} >You lose</p>
+      )}
+      <button className={style.button} onClick={startGame}>Try again</button>
+    </div>
   );
 };
 
