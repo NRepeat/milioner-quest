@@ -2,8 +2,7 @@
   box-sizing: border-box;
 
   width: 80%;
-  height: 50px;
-
+  height: 100%;
   background: #ffffff;
 
   border: 1px solid #d0d0d8;
@@ -16,6 +15,7 @@
   padding-bottom: 15px;
   text-align: center;
   transition: all 100ms;
+  
 }
 .default::after {
   content: "";
@@ -68,8 +68,11 @@
 .lader {
   display: flex;
   flex-direction: column-reverse;
-
-  justify-content: space-around;
+  justify-content:space-around;
   align-items: center;
   width: 700px;
+  overflow: scroll;
+  overflow-x:hidden ;
+
+
 }
