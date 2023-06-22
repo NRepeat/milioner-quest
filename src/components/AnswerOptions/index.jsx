@@ -1,19 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import data from "../json/questions.json";
 import Lader from "../lader";
 import { withRouter } from "react-router-dom";
 import FinalPage from "../../page/finalPage";
 import style from "./style.module.scss";
 import classNames from "classnames";
-const Answers = () => {
-  const [options, setOptions] = useState([]);
-  const [question, setQuestion] = useState([]);
-  const [correctAnswer, setCorrectAnswer] = useState([]);
-  const [renderAnswer, setRenderAnswer] = useState([]);
-  const [count, setCount] = useState(0);
-  const [answer, setAnswer] = useState([]);
-  const [renderQuestion, setRenderQuestion] = useState("");
-  const [gameOver, setGameOver] = useState(false);
+import reducer from "./reducer";
+
+const ActionType = {
+  SET_OPTIONS: "SET_OPTIONS",
+  SET_QUESTION: "SET_QUESTION",
+  SET_CORRECT_ANSWER: "SET_CORRECT_ANSWER",
+  SET_RENDER_ANSWER: "SET_RENDER_ANSWER",
+  SET_COUNT: "SET_COUNT",
+  SET_ANSWER: "SET_ANSWER",
+  SET_RENDER_QUESTION: "SET_RENDER_QUESTION",
+  SET_GAME_OVER: "SET_GAME_OVER",
+};
+
+const initialState = {
+  options: [],
+  question: [],
+  correctAnswer: [],
+  renderAnswer: [],
+  count: 0,
+  answer: [],
+  renderQuestion: "",
+  gameOver: false,
+};
+
+const Answers = (props) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   useEffect(() => {
     const { options, question, answer } = data.reduce(
       (acc, item) => {
@@ -24,55 +42,58 @@ const Answers = () => {
       },
       { options: [], question: [], answer: [] }
     );
-    setOptions(options);
-    setQuestion(question);
-    setCorrectAnswer(answer);
-    setRenderAnswer(options[0]);
-    setAnswer(answer[0]);
-    setRenderQuestion(question[0]);
+    dispatch({ type: ActionType.SET_OPTIONS, payload: options });
+    dispatch({ type: ActionType.SET_QUESTION, payload: question });
+    dispatch({ type: ActionType.SET_CORRECT_ANSWER, payload: answer });
+    dispatch({ type: ActionType.SET_RENDER_ANSWER, payload: options[0] });
+    dispatch({ type: ActionType.SET_ANSWER, payload: answer[0] });
+    dispatch({ type: ActionType.SET_RENDER_QUESTION, payload: question[0] });
   }, []);
+
   const next = () => {
-    if (count + 1 < options.length) {
-      setCount(count + 1);
-      setRenderAnswer(options[count + 1]);
-      setAnswer(correctAnswer[count + 1]);
-      setRenderQuestion(question[count + 1]);
+    if (state.count + 1 < state.options.length) {
+      dispatch({ type: "SET_COUNT", payload: state.count + 1 });
+      dispatch({ type: "SET_RENDER_ANSWER", payload: state.options[state.count + 1] });
+      dispatch({ type: "SET_ANSWER", payload: state.correctAnswer[state.count + 1] });
+      dispatch({ type: "SET_RENDER_QUESTION", payload: state.question[state.count + 1] });
     } else {
-      setGameOver(true);
+      dispatch({ type: "SET_GAME_OVER", payload: true });
     }
   };
+
   const checkAnswer = (e) => {
     const pressedAnswer = e.target.textContent.substring(1).trim();
-    console.log(answer)
-    if (pressedAnswer === answer) {
+    console.log(state.answer);
+    if (pressedAnswer === state.answer) {
       next();
     } else {
-      setGameOver(true);
+      dispatch({ type: "SET_GAME_OVER", payload: true });
     }
   };
 
   const buttonClassnames = classNames(style.button, style.box1);
-  const answerButtons = renderAnswer.map((answer, index) => {
+  const answerButtons = state.renderAnswer.map((answer, index) => {
     const abcd = ["A", "B", "C", "D"];
     return (
       <button className={buttonClassnames} onClick={checkAnswer} key={index}>
-       <div className={style.variant}>{abcd[index]}</div> {answer}
+        <div className={style.variant}>{abcd[index]}</div> {answer}
       </button>
     );
   });
 
-  if (gameOver) {
-    return <FinalPage score={count} />;
+  if (state.gameOver) {
+    return <FinalPage score={state.count} />;
   }
+
   return (
     <div className={style.wrapper}>
       <div className={style.answerWrapper}>
         {" "}
-        <div className={style.qyestion}>{renderQuestion}</div>
+        <div className={style.qyestion}>{state.renderQuestion}</div>
         <div className={style.buttonWrapper}>{answerButtons}</div>
       </div>
 
-      <Lader  step={count} />
+      <Lader step={state.count} />
     </div>
   );
 };
