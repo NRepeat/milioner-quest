@@ -6,17 +6,8 @@ import FinalPage from "../../page/finalPage";
 import style from "./style.module.scss";
 import classNames from "classnames";
 import reducer from "./reducer";
+import { ActionType } from "./actionTypeEnum";
 
-const ActionType = {
-  SET_OPTIONS: "SET_OPTIONS",
-  SET_QUESTION: "SET_QUESTION",
-  SET_CORRECT_ANSWER: "SET_CORRECT_ANSWER",
-  SET_RENDER_ANSWER: "SET_RENDER_ANSWER",
-  SET_COUNT: "SET_COUNT",
-  SET_ANSWER: "SET_ANSWER",
-  SET_RENDER_QUESTION: "SET_RENDER_QUESTION",
-  SET_GAME_OVER: "SET_GAME_OVER",
-};
 
 const initialState = {
   options: [],
