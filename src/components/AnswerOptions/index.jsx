@@ -8,7 +8,6 @@ import classNames from "classnames";
 import reducer from "./reducer";
 import { ActionType } from "./actionTypeEnum";
 
-
 const initialState = {
   options: [],
   question: [],
@@ -44,9 +43,18 @@ const Answers = (props) => {
   const next = () => {
     if (state.count + 1 < state.options.length) {
       dispatch({ type: "SET_COUNT", payload: state.count + 1 });
-      dispatch({ type: "SET_RENDER_ANSWER", payload: state.options[state.count + 1] });
-      dispatch({ type: "SET_ANSWER", payload: state.correctAnswer[state.count + 1] });
-      dispatch({ type: "SET_RENDER_QUESTION", payload: state.question[state.count + 1] });
+      dispatch({
+        type: "SET_RENDER_ANSWER",
+        payload: state.options[state.count + 1],
+      });
+      dispatch({
+        type: "SET_ANSWER",
+        payload: state.correctAnswer[state.count + 1],
+      });
+      dispatch({
+        type: "SET_RENDER_QUESTION",
+        payload: state.question[state.count + 1],
+      });
     } else {
       dispatch({ type: "SET_GAME_OVER", payload: true });
     }
