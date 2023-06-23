@@ -21,7 +21,7 @@ const initialState = {
 
 const Answers = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+console.log(state)
   useEffect(() => {
     const { options, question, answer } = data.reduce(
       (acc, item) => {
@@ -42,31 +42,30 @@ const Answers = (props) => {
 
   const next = () => {
     if (state.count + 1 < state.options.length) {
-      dispatch({ type: "SET_COUNT", payload: state.count + 1 });
+      dispatch({ type: ActionType.SET_COUNT, payload: state.count + 1 });
       dispatch({
-        type: "SET_RENDER_ANSWER",
+        type: ActionType.SET_RENDER_ANSWER,
         payload: state.options[state.count + 1],
       });
       dispatch({
-        type: "SET_ANSWER",
+        type: ActionType.SET_ANSWER,
         payload: state.correctAnswer[state.count + 1],
       });
       dispatch({
-        type: "SET_RENDER_QUESTION",
+        type: ActionType.SET_RENDER_QUESTION,
         payload: state.question[state.count + 1],
       });
     } else {
-      dispatch({ type: "SET_GAME_OVER", payload: true });
+      dispatch({ type: ActionType.SET_GAME_OVER, payload: true });
     }
   };
 
   const checkAnswer = (e) => {
     const pressedAnswer = e.target.textContent.substring(1).trim();
-    console.log(state.answer);
     if (pressedAnswer === state.answer) {
       next();
     } else {
-      dispatch({ type: "SET_GAME_OVER", payload: true });
+      dispatch({ type: ActionType.SET_GAME_OVER, payload: true });
     }
   };
 
